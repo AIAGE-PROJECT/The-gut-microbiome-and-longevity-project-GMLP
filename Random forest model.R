@@ -12,13 +12,13 @@ set.seed(480)
 feature <- read.table('level-6-20-44_66-85_100-117.txt',header = T,sep = "\t",check.names = T)
 #The data is divided into the training set and the verification set by 3:1
 inTrain <- createDataPartition(y = feature[,211],p = 0.25,list = F)
-validation <- feature[inTrain,]
-train <- feature[-inTrain,]
-table(train$Group)
-table(validation$Group)
-write.table(validation,'lv6-20-44_66-85_100-117-validation.txt',sep = '\t',quote = F)
-write.table(train,'lv6-20-44_66-85_100-117-train.txt',sep = '\t',quote = F)
-train <- train[,-1]
+validation1 <- feature[inTrain,]
+train1 <- feature[-inTrain,]
+table(train1$Group)
+table(validation1$Group)
+write.table(validation1,'lv6-20-44_66-85_100-117-validation.txt',sep = '\t',quote = F)
+write.table(train1,'lv6-20-44_66-85_100-117-train.txt',sep = '\t',quote = F)
+train <- train1[,-1]
 train$Group = as.factor(train$Group)
 #Optimize parameters ntree and mtry of RF model
 n <- length(names(train))
