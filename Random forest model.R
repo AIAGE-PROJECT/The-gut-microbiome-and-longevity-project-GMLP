@@ -48,9 +48,9 @@ print(train.rf)
 #Random Forest Cross-Valdidation for feature selection, the number of features is 29.
 set.seed(290)
 cross <- na.omit(train)
-mycross<-cbind(cross[1,210], matrix(runif(96 * nrow(cross)), nrow(cross), 96))
+#mycross<-cbind(cross[1:210], matrix(runif(96 * nrow(cross)), nrow(cross), 96))
 #Multiple cross verification
-result <- replicate(5, rfcv(mycross, cross$Group,cv.fold = 10,step = 1.5), simplify = FALSE)
+result <- replicate(5, rfcv(cross, cross$Group,cv.fold = 10,step = 1.5), simplify = FALSE)
 error.cv <- sapply(result, "[[", "error.cv")
 write.table(error.cv,'error.cv.tsv',sep = '\t',quote = F)
 pdf("CV_error.pdf",height = 5,width = 5)
@@ -59,7 +59,8 @@ matplot(result[[1]]$n.var, cbind(rowMeans(error.cv), error.cv), type = "l",
         xlab = "Number of variables", ylab = "CV Error")
 dev.off()
 
-#Variable Importance Top 29, Fig6a
+#Variable Importance Top 29,which value of MeanDecreaseGini greater than 2, Fig6a
+write.table(varImpPlot(train.rf),'varImpPlot_filter.tsv',sep = '\t',quote=F)
 pdf("Fig6a_varImpPlot.pdf",height=7,width=10)
 varImpPlot(train.rf, sort = TRUE, n.var = min(29, nrow(train.rf$importance)))
 dev.off()
@@ -121,7 +122,7 @@ model_FR_pre2 <- predict(model_FR2,newdata = val_yc,type = "prob")
 fc2 <- append(fc2,as.numeric(val_yc$Group))
 mod_pre2 <- append(mod_pre2,model_FR_pre2[,2])
 df2 <- cbind(fc2,as.numeric(mod_pre2))
-write.table(df2,"validation_66-85vs100-117.tsv",sep = '\t',quote = F)
+write.table(df2,"validation_20-44vs100-117.tsv",sep = '\t',quote = F)
 #ROC for validation of 20-44vs100-117
 pdf("Fig6c1_validation_20-44vs100-117.pdf",height = 4,width = 4)
 b<- plot.roc(df2[,1],df2[,2],
