@@ -1,0 +1,8 @@
+Phylum	chao1	pielou_e	shannon	chao1_p	pielou_e_p	shannon_p
+Firmicutes	164.3607927	0.220666054	2.487571847	****	****	****
+Bacteroidetes	-103.8707495	0.144198853	0.511220546	**	***	ns
+Proteobacteria	-84.6500778	-0.380821383	-3.255025649	ns	****	****
+Verrucomicrobia	-41.62474504	-0.278922326	-2.204117576	ns	*	ns
+Synergistetes	573.6210309	-0.254082309	0.527339831	ns	ns	ns
+Actinobacteria	-22.45844908	0.000187968	0.345904306	ns	ns	ns
+Fusobacteria	-279.9400011	-0.049883846	-1.629380579	ns	ns	ns
