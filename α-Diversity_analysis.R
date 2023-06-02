@@ -144,7 +144,7 @@ p2 <- ggplot(data = df_corr, aes(x = `pielou_e`, y = `p_Proteobacteria`))+
         panel.grid = element_blank())
 ggsave(plot = p2,'corr_Proteobacteria_pielou.pdf',height = 5,width = 5,dpi = 600)
 
-#Associations between gut microbiome taxa and ¦Á-diversity, Fig.2g and Supplementary Table 2
+#Associations between gut microbiome taxa and Â¦Ã-diversity, Fig.2g and Supplementary Table 2
 #Transform classification variables into factor types
 for (i in c("sex","hypertension")){
   df_corr[,i] = as.factor(df_corr[,i]) }
@@ -179,7 +179,7 @@ for(n in c("chao1","pielou_e","shannon")) {
   write.table(Uni_glm,paste0(n,"_taxa_glm_Sex_BMI_Hypertension.txt"),sep = '\t',quote = FALSE,col.names = NA)
 }
 
-#Plot Fig2g
+#Plot Fig2g, the imported file is from the glm model result, for example "glm_beta&p_phylum_adjust_p.txt"
 dt_phy <- read.table("glm_beta&p_phylum_adjust_p.txt",header = T,sep = '\t',comment.char = '',check.names = F)
 dt_phy$Phylum <- factor(dt_phy$Phylum,levels = c("Fusobacteria","Actinobacteria","Synergistetes","Verrucomicrobia",
                                            "Proteobacteria","Bacteroidetes","Firmicutes"))
@@ -187,7 +187,7 @@ phy1 <- ggplot(dt_phy,aes(x = chao1,y = Phylum))+
   geom_point(aes(color = `chao1_p`),size = 6)+
   geom_segment(aes(x = 0,xend = chao1,y = Phylum,yend = Phylum,color = `chao1_p`),size = 2,linetype = "solid")+
   scale_colour_manual(values = c("#0072B5FF","#BC3C29FF","#B09C85FF"))+
-  labs(title = 'Chao1 index',y = 'Phylum',x = '¦Â-coef.')+
+  labs(title = 'Chao1 index',y = 'Phylum',x = 'Â¦Ã‚-coef.')+
   geom_vline(aes(xintercept = 0),linetype = "dotted",lwd = 1,col = "black",alpha = 0.5)+
   theme(legend.position = 'none')+
   guides(size = guide_legend(ncol = 4,order = 0,
@@ -204,7 +204,7 @@ phy2 <- ggplot(dt_phy,aes(x = pielou_e,y = Phylum))+
   geom_point(aes(color = `pielou_e_p`),size = 6)+
   geom_segment(aes(x = 0,xend = pielou_e,y = Phylum,yend = Phylum,color = `pielou_e_p`),size = 2,linetype = "solid")+
   scale_colour_manual(values = c("#6F99ADFF","#E18727FF","#BC3C29FF","#B09C85FF"))+
-  labs(title = "Pielou's index",y = '',x = '¦Â-coef.')+
+  labs(title = "Pielou's index",y = '',x = 'Â¦Ã‚-coef.')+
   geom_vline(aes(xintercept = 0),linetype = "dotted",lwd = 1,col = "black",alpha = 0.5)+
   theme(legend.position = 'none')+
   guides(size=guide_legend(ncol = 4,order = 0,
@@ -222,7 +222,7 @@ phy3 < -ggplot(dt_phy,aes(x = shannon,y = Phylum))+
   geom_point(aes(color = `shannon_p`),size = 6)+
   geom_segment(aes(x = 0,xend = shannon,y = Phylum,yend = Phylum,color = `shannon_p`),size = 2,linetype = "solid")+
   scale_colour_manual(values = c("#BC3C29FF","#B09C85FF"))+
-  labs(title = 'Shannon index',y = '',x = '¦Â-coef.')+
+  labs(title = 'Shannon index',y = '',x = 'Â¦Ã‚-coef.')+
   geom_vline(aes(xintercept = 0),linetype = "dotted",lwd = 1,col = "black",alpha = 0.5)+
   theme(legend.position = 'none')+
   theme(panel.background = element_rect(fill = 'white', colour = 'black'),
