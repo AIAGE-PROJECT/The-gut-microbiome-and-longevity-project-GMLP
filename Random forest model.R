@@ -50,7 +50,7 @@ set.seed(290)
 cross <- na.omit(train)
 #mycross<-cbind(cross[1:210], matrix(runif(96 * nrow(cross)), nrow(cross), 96))
 #Multiple cross verification
-result <- replicate(5, rfcv(cross, cross$Group,cv.fold = 10,step = 1.5), simplify = FALSE)
+result <- replicate(5, rfcv(as.matrix(cross[,c(1:209)]), cross$Group,cv.fold = 10,step = 1.5), simplify = FALSE)
 error.cv <- sapply(result, "[[", "error.cv")
 write.table(error.cv,'error.cv.tsv',sep = '\t',quote = F)
 pdf("CV_error.pdf",height = 5,width = 5)
